@@ -34,30 +34,30 @@ LIMIT_RUN_FOREVER = 0
 
 class Motor(object):
 
-	def __init__(self, brick, port):
-		self.brick = brick
-		self.port = port
-		self.power = 0
-		self.mode = MODE_IDLE
-		self.regulation = REGULATION_IDLE
-		self.turn_ratio = 0
-		self.run_state = RUN_STATE_IDLE
-		self.tacho_limit = LIMIT_RUN_FOREVER
-		self.tacho_count = 0
-		self.block_tacho_count = 0
-		self.rotation_count = 0
+    def __init__(self, brick, port):
+        self.brick = brick
+        self.port = port
+        self.power = 0
+        self.mode = MODE_IDLE
+        self.regulation = REGULATION_IDLE
+        self.turn_ratio = 0
+        self.run_state = RUN_STATE_IDLE
+        self.tacho_limit = LIMIT_RUN_FOREVER
+        self.tacho_count = 0
+        self.block_tacho_count = 0
+        self.rotation_count = 0
 
-	def set_output_state(self):
-		self.brick.set_output_state(self.port, self.power, self.mode,
-			self.regulation, self.turn_ratio, self.run_state,
-			self.tacho_limit)
+    def set_output_state(self):
+        self.brick.set_output_state(self.port, self.power, self.mode,
+            self.regulation, self.turn_ratio, self.run_state,
+            self.tacho_limit)
 
-	def get_output_state(self):
-		values = self.brick.get_output_state(self.port)
-		(self.port, self.power, self.mode, self.regulation,
-			self.turn_ratio, self.run_state, self.tacho_limit,
-			tacho_count, block_tacho_count, rotation_count) = values
-		return values
+    def get_output_state(self):
+        values = self.brick.get_output_state(self.port)
+        (self.port, self.power, self.mode, self.regulation,
+            self.turn_ratio, self.run_state, self.tacho_limit,
+            tacho_count, block_tacho_count, rotation_count) = values
+        return values
 
-	def reset_position(self, relative):
-		self.brick.reset_motor_position(self.port, relative)
+    def reset_position(self, relative):
+        self.brick.reset_motor_position(self.port, relative)
